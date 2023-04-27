@@ -18,11 +18,11 @@ public enum ResultEnum {
     ERROR_NOTFOUND(404,"找不到请求资源"),
     ERROR_SERVE(500, "服务端错误，请联系管理员 1203952894@qq.com");
 
-    private final Integer code;
-    private final String msg;
+    private final Integer status;
+    private final String message;
 
-    private ResultEnum(Integer code, String msg) {
-        this.code = code;
-        this.msg = msg;
+    private ResultEnum(Integer status, String message) {
+        this.status = status;
+        this.message = message;
     }
 }
