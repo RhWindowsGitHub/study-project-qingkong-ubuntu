@@ -23,9 +23,9 @@ StudyProjectForQingKongUbuntu
 
 ## Build With
 
-| 工具     | 说明      | 版本                  |
-|--------|---------|---------------------|
-| Ubuntu | 操作系统 OS | Windows 11 专业版 22H2 |
+| 工具     | 说明      | 版本                 |
+|--------|---------|--------------------|
+| Ubuntu | 操作系统 OS | Ubuntu 22.04.2 LTS |
  |  IDEA|  集成开发工具 | IDEA 2023.1|
 
 ## Getting Started
