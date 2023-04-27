@@ -106,6 +106,7 @@ public class SecurityConfiguration {
         return source;
     }
 
+    @Bean
     public AuthenticationManager authenticationManager(HttpSecurity httpSecurity) throws Exception {
         return
                 httpSecurity
