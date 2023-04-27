@@ -22,7 +22,6 @@ import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import ubuntu.cola.entity.result.R;
 import ubuntu.cola.entity.result.ResultEnum;
-import ubuntu.cola.service.AuthoriseService;
 import ubuntu.cola.service.impl.AuthoriseServiceImpl;
 
 import javax.sql.DataSource;
