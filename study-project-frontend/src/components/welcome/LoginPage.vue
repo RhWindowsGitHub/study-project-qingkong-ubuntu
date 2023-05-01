@@ -25,7 +25,7 @@
                 <el-checkbox v-model="form.remember" label="记住我"></el-checkbox>
             </el-col>
             <el-col :span="12" style="text-align: right">
-                <el-link>忘记密码</el-link>
+                <el-link>忘记密码？</el-link>
             </el-col>
         </el-row>
 
@@ -38,7 +38,7 @@
         </el-divider>
 
         <div>
-            <el-button style="width: 270px" type="warning" plain>注册账号</el-button>
+            <el-button @click="router.push('/register')" style="width: 270px" type="warning" plain>注册账号</el-button>
         </div>
     </div>
 </template>
@@ -46,7 +46,7 @@
 <script setup>
 import {Lock, User} from "@element-plus/icons-vue";
 import {reactive} from "vue";
-import {get, post} from "@/utils";
+import {post} from "@/utils";
 import {ElMessage} from "element-plus";
 import router from "@/router";
 

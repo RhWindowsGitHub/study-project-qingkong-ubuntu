@@ -22,8 +22,7 @@ import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import ubuntu.cola.entity.result.R;
 import ubuntu.cola.entity.result.ResultEnum;
-import ubuntu.cola.service.impl.AuthoriseServiceImpl;
-
+import ubuntu.cola.service.AuthoriseService;
 import javax.sql.DataSource;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -40,7 +39,7 @@ import java.nio.charset.StandardCharsets;
 public class SecurityConfiguration {
 
     @Resource
-    AuthoriseServiceImpl authoriseService;
+    AuthoriseService authoriseService;
 
     @Resource
     DataSource dataSource;
@@ -49,6 +48,7 @@ public class SecurityConfiguration {
         return httpSecurity
                 .authorizeHttpRequests()
                 // 所有请求都需要进行验证
+                .requestMatchers("/v1/api/auth/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 // 自定义登陆接口

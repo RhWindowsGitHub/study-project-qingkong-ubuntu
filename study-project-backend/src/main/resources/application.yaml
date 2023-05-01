@@ -5,7 +5,22 @@ spring:
     name: study-project-qingkong-ubuntu
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/study?useUnicode=true&characterEncoding=UTF-8
+    url: jdbc:mysql://127.0.0.1:3306/study?useUnicode=true&characterEncoding=UTF-8
     username: root
     password: root
-
+  mail:
+    host: smtp.163.com
+    username: m15503424451@163.com
+    password: YHYPINNWLJPUHDJL
+    port: 465
+    properties:
+      from: Cola0223
+      mail:
+        smtp:
+          socketFactory:
+            class: javax.net.ssl.SSLSocketFactory
+  data:
+    redis:
+      port: 6379
+      host: 127.0.0.1
+      database: 0

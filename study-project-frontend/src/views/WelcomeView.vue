@@ -16,8 +16,12 @@
         </div>
 
         <!--  登陆 div      -->
-        <div style="width: 400px; background-color: white">
-           <router-view></router-view>
+        <div style="width: 400px; background-color: white;z-index: 1">
+            <router-view v-slot="{ Component }">
+            <transition name="el-fade-in-linear">
+                <component :is="Component" />
+            </transition>
+            </router-view>
         </div>
     </div>
 </template>
