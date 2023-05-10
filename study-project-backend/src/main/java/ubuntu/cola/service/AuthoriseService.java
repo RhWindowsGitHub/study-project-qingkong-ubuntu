@@ -1,6 +1,7 @@
 package ubuntu.cola.service;
 
 import org.springframework.security.core.userdetails.UserDetailsService;
+import ubuntu.cola.entity.result.R;
 
 /**
  * @author Cola_Ubuntu
@@ -10,5 +11,9 @@ import org.springframework.security.core.userdetails.UserDetailsService;
  */
 public interface AuthoriseService extends UserDetailsService {
 
-    boolean sendValidateEmail(String email, String sessionId);
+    R<String> sendValidateEmail(String email, String sessionId,boolean hasAccount);
+
+    R<String> validateAndRegister(String username, String password, String email, String code,String sessionId);
+
+    R<String> startReset(String email, String code,String sessionId,boolean hasAccount);
 }

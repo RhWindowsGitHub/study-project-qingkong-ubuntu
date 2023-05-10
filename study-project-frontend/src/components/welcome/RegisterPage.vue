@@ -7,7 +7,7 @@
 
         <el-form style="margin-top: 50px" :model="form" :rules="rules" @validate="onValidate" ref="formRef">
             <el-form-item prop="username">
-                <el-input v-model="form.username" type="text" placeholder="用户名 || 邮箱">
+                <el-input v-model="form.username" :maxlength = "12" type="text" placeholder="用户名 || 邮箱">
                     <template #prefix>
                         <el-icon><User /></el-icon>
                     </template>
@@ -15,7 +15,7 @@
             </el-form-item>
 
             <el-form-item prop="password">
-                <el-input v-model="form.password" type="password" placeholder="密码">
+                <el-input v-model="form.password" :maxlength = "16" type="password" placeholder="密码">
                     <template #prefix>
                         <el-icon><Lock /></el-icon>
                     </template>
@@ -41,7 +41,7 @@
             <el-form-item prop="code">
                 <el-row :gutter="10" style="width: 100%">
                     <el-col :span="16">
-                        <el-input  v-model="form.code" type="text" placeholder="请输入验证码">
+                        <el-input  v-model="form.code" :maxlength = "6" type="text" placeholder="请输入验证码">
                             <template #prefix>
                                 <el-icon><EditPen /></el-icon>
                             </template>
@@ -49,7 +49,9 @@
                     </el-col>
 
                     <el-col :span="6">
-                        <el-button type="success" @click="sendValidateEmail()" :disabled="!isEmailValidate">获取验证码</el-button>
+                        <el-button type="success" @click="sendValidateEmail()"
+                                   :disabled="!isEmailValidate || coldEmailTime > 0">
+                            {{coldEmailTime > 0? '请稍候：'+coldEmailTime+'秒':'获取验证码'}}</el-button>
                     </el-col>
                 </el-row>
             </el-form-item>
@@ -83,6 +85,7 @@ const form = reactive({
 )
 const formRef = ref()
 const isEmailValidate = ref(false)
+const coldEmailTime = ref(0)
 
 const validateUsername = (rule, value, callback) => {
     if (value === '') {
@@ -144,7 +147,15 @@ const onValidate = (prop,isValidate) => {
 const register = () => {
     formRef.value.validate((isValidate)=> {
         if (isValidate){
-
+            post('v1/api/auth/register',{
+                username: form.username,
+                password: form.password,
+                email: form.email,
+                code: form.code
+            },(message)=>{
+                ElMessage.success(message)
+                router.push("/")
+            })
         }else {
             ElMessage.warning("请先完成信息的填写")
         }
@@ -156,6 +167,8 @@ const sendValidateEmail = () => {
         email: form.email
     },(message)=>{
         ElMessage.success(message)
+        coldEmailTime.value = 60
+        setInterval(()=> coldEmailTime.value --,1000)
         }
     )
 }
